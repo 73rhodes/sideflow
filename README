@@ -1,0 +1,10 @@
+=================================================
+Selenium IDE Flow Control Extension
+
+Andrey Yegorov  : original author
+Darren DeRidder : Selenium IDE port and bugfixes
+=================================================
+
+An extension for the Selenium IDE Firefox plugin:
+goto, while and gotoif functions in Selenium IDE.
+

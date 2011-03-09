@@ -7,9 +7,9 @@ Let's you do goto and while loops in the Selenium IDE Firefox add-on.
 
 Install
 ---
-Get Selenium IDE for Firefox from http://seleniumhq.org
-Launch Selenium IDE from Firefox and open the options menu
-Add the sideflow.js file to the "Selenium Core extensions (user-extensions.js)" field
+- Get Selenium IDE for Firefox from http://seleniumhq.org
+- Launch Selenium IDE from Firefox and open the options menu
+- Add the sideflow.js file to the "Selenium Core extensions (user-extensions.js)" field
 
 Authors
 ---

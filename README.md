@@ -1,7 +1,7 @@
 Selenium IDE Flow Control Extension
 ===
 
-![screenshot](http://4.bp.blogspot.com/_Vi1folaOZAs/R7N1_L5KjDI/AAAAAAAAAGQ/PyozuVCHBC4/s1600-h/flow_control_ide.png "sideflow screenshot")
+<img src="http://4.bp.blogspot.com/_Vi1folaOZAs/R7N1_L5KjDI/AAAAAAAAAGQ/PyozuVCHBC4/s400/flow_control_ide.png"></img>
 
 Authors
 ---

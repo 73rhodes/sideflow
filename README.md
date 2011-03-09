@@ -14,4 +14,4 @@ Resources
 ---
 
 - [Blog](http://51elliot.blogspot.com/2008/02/selenium-ide-goto.html)
-- [OpenQA](http://www.openqa.org)
+- [SeleniumHQ](http://seleniumhq.org/)

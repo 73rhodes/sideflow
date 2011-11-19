@@ -2,13 +2,12 @@
 This toolkit is the work of Andrey Yegorov & Darren DeRidder of the Ottawa office of Kindsight
 
 The ForEach stuff at the bottom below the separator is a contribution by Martin H. Bramwell, 2011/11
-
 */
+
+var forEachLabels = {};  // mhb:20111107
 
 var gotoLabels= {};
 var whileLabels = {};
-
-var forEachLabels = {};  // mhb:20111107
 
 // overload the original Selenium reset function
 Selenium.prototype.reset = function() {
@@ -19,6 +18,7 @@ Selenium.prototype.reset = function() {
     this.browserbot.selectWindow("null");
     this.browserbot.resetPopups();
 }
+
 
 /*
  * ---   Initialize Conditional Elements  --- *
@@ -57,7 +57,6 @@ Selenium.prototype.initialiseLabels = function()
             case "endfor":
                 forEachCmds.push( [command_rows[i].command.toLowerCase(), i] )
                 break;
-
         }
     }  
     var i = 0;
@@ -103,8 +102,6 @@ Selenium.prototype.initialiseLabels = function()
         }
     }
 /*
-*/
-/*  ---- mhb: 20111107 ---   end --- */
 
 }
 

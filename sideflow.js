@@ -1,11 +1,3 @@
-/*
-This toolkit is the work of Andrey Yegorov & Darren DeRidder of the Ottawa office of Kindsight
-
-The ForEach stuff at the bottom below the separator is a contribution by Martin H. Bramwell, 2011/11
-*/
-
-var forEachLabels = {};  // mhb:20111107
-
 var gotoLabels= {};
 var whileLabels = {};
 
@@ -21,26 +13,31 @@ Selenium.prototype.reset = function() {
 
 
 /*
+This toolkit is the work of Andrey Yegorov & Darren DeRidder of the Ottawa office of Kindsight
+
+The ForEach stuff at the bottom below the separator is a contribution by Martin H. Bramwell, 2011/11
+*/
+
+var forEachLabels = {};  // mhb:20111107
+
+/*
  * ---   Initialize Conditional Elements  --- *
  *  Run through the script collecting line numbers of all conditional elements
  *  There are three a results arrays: goto labels, while pairs and forEach pairs
  *  
  */
-
 Selenium.prototype.initialiseLabels = function()
 {
     gotoLabels = {};
     whileLabels = { ends: {}, whiles: {} };
-
     forEachLabels = { forends: {}, fors: {} };  // mhb:20111107
-
     var command_rows = [];
     var numCommands = testCase.commands.length;
     for (var i = 0; i < numCommands; ++i) {
         var x = testCase.commands[i];
         command_rows.push(x);
     }
-    var whileCmds = [];
+    var cycles = [];
     var forEachCmds = [];
     for( var i = 0; i < command_rows.length; i++ ) {
         if (command_rows[i].type == 'command')
@@ -50,9 +47,8 @@ Selenium.prototype.initialiseLabels = function()
                 break;
             case "while":
             case "endwhile":
-                whileCmds.push( [command_rows[i].command.toLowerCase(), i] )
+                cycles.push( [command_rows[i].command.toLowerCase(), i] )
                 break;
-
             case "storefor":
             case "endfor":
                 forEachCmds.push( [command_rows[i].command.toLowerCase(), i] )
@@ -60,17 +56,17 @@ Selenium.prototype.initialiseLabels = function()
         }
     }  
     var i = 0;
-    while( whileCmds.length ) {
-        if( i >= whileCmds.length ) {
+    while( cycles.length ) {
+        if( i >= cycles.length ) {
             throw new Error( "non-matching while/endWhile found" );
         }
-        switch( whileCmds[i][0] ) {
+        switch( cycles[i][0] ) {
             case "while":
-                if( ( i+1 < whileCmds.length ) && ( "endwhile" == whileCmds[i+1][0] ) ) {
+                if( ( i+1 < cycles.length ) && ( "endwhile" == cycles[i+1][0] ) ) {
                     // pair found
-                    whileLabels.ends[ whileCmds[i+1][1] ] = whileCmds[i][1];
-                    whileLabels.whiles[ whileCmds[i][1] ] = whileCmds[i+1][1];
-                    whileCmds.splice( i, 2 );
+                    whileLabels.ends[ cycles[i+1][1] ] = cycles[i][1];
+                    whileLabels.whiles[ cycles[i][1] ] = cycles[i+1][1];
+                    cycles.splice( i, 2 );
                     i = 0;
                 } else ++i;
                 break;
@@ -79,7 +75,6 @@ Selenium.prototype.initialiseLabels = function()
                 break;
         }
     }
-
 /*  ---- mhb: 20111107 --- begin --- */
     var idxFE = 0;
     while( forEachCmds.length ) {
@@ -102,7 +97,6 @@ Selenium.prototype.initialiseLabels = function()
         }
     }
 /*
-
 }
 
 Selenium.prototype.continueFromRow = function( row_num )
@@ -148,6 +142,7 @@ Selenium.prototype.doEndWhile = function()
     if( undefined == while_row ) throw new Error( "Corresponding 'While' is not found." );
     this.continueFromRow( while_row );
 }
+
 
 /* -------   ForEach looping Contributed by Martin "Hasan" Bramwell 2011/11/07  ------- */
 
@@ -260,5 +255,4 @@ Selenium.prototype.doEndWhile = function()
 		this.add = doAdd;
 		
 	}
-
 

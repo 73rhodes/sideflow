@@ -75,6 +75,7 @@ Selenium.prototype.initialiseLabels = function()
                 break;
         }
     }
+
 /*  ---- mhb: 20111107 --- begin --- */
     var idxFE = 0;
     while( forEachCmds.length ) {
@@ -96,7 +97,7 @@ Selenium.prototype.initialiseLabels = function()
                 break;
         }
     }
-/*
+
 }
 
 Selenium.prototype.continueFromRow = function( row_num )
@@ -170,8 +171,6 @@ Selenium.prototype.doEndWhile = function()
 		      if( undefined == end_for_row ) throw new Error( "Corresponding 'endFor' could not be found." );
 		      this.continueFromRow( end_for_row );
 		  }
-/*
-*/
 	}
 
 	Selenium.prototype.doEndFor = function()
@@ -180,8 +179,6 @@ Selenium.prototype.doEndWhile = function()
 		  var for_row = forEachLabels.forends[ last_foreach_row ] - 1;
 		  if( undefined == for_row ) throw new Error( "Corresponding 'storeFor' could not be found." );
 		  this.continueFromRow( for_row );
-/*
-*/
 	}
 
 

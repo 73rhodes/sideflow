@@ -1,3 +1,48 @@
+==================================
+Name: Flow Control
+Version: 1.0.4
+Requirements: Selenium IDE v1.0.5
+==================================
+
+NOTE:
+This is a plugin for Selenium IDE incorporating the flow control extension 
+available at http://wiki.openqa.org/display/SEL/flowControl and 
+http://51elliot.blogspot.com/2008/02/selenium-ide-goto.html
+
+Update 2011/11/15:
+Darren DeRidder now calls the script sideflow.js and publishes it here:
+https://github.com/darrenderidder/sideflow
+
+Hasan Bramwell forked it, added ForEach looping and tested it under FireFox 8.0
+His fork of sideflow.js is here:
+https://github.com/martinhbramwell/sideflow
+
+DOCUMENTATION:
+Have a look here:
+https://github.com/martinhbramwell/sideflow
+
+INSTALLATION:
+1. Run build.bat (or build.sh on Linux).
+2. Open flowcontrol.xpi in Firefox.
+
+REQUIREMENTS:
+To build on Windows you will need 7-Zip and Robocopy
+* 7-Zip - http://www.7-zip.org/
+* Robocopy - http://en.wikipedia.org/wiki/Robocopy
+
+CREDITS:
+* Andrey Yegorov - Created the original flow control extension
+* Darren DeRidder - Modified the original extension for Selenium IDE
+* Adam Goucher - Author of the Selenium IDE plugin API 
+* Dave Hunt - All I did was turn the extension into a plugin
+* Martin "Hasan" Bramwell - Added For/Each looping (as seen in Java)
+
+
+===
+===
+===
+
+
 Selenium IDE Flow Control Extension
 ===
 

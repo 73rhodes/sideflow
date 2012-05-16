@@ -52,14 +52,24 @@
 	<td></td>
 </tr>
 <tr>
+	<td>echo</td>
+	<td>&quot;Compare : &quot;+${x}+&quot; vs &quot;+${y}</td>
+	<td></td>
+</tr>
+<tr>
 	<td>while</td>
 	<td>${x} &lt;= ${y}</td>
 	<td></td>
 </tr>
 <tr>
-	<td>store</td>
-	<td>new Number(${x} + 1)</td>
+	<td>storeEval</td>
+	<td>eval(${x} + 1)</td>
 	<td>x</td>
+</tr>
+<tr>
+	<td>echo</td>
+	<td>Compare :&nbsp;&nbsp;${x}&nbsp;&nbsp;vs&nbsp;&nbsp;${y}</td>
+	<td></td>
 </tr>
 <tr>
 	<td>endWhile</td>
@@ -67,11 +77,10 @@
 	<td></td>
 </tr>
 <tr>
-	<td>runScript</td>
-	<td>alert(&quot;Finished with x=&quot;+${x}+&quot; and y=&quot;+${y});</td>
+	<td>echo</td>
+	<td>Finished with x = ${x} and y = ${y}</td>
 	<td></td>
 </tr>
-
 </tbody></table>
 </body>
 </html>

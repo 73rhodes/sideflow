@@ -115,7 +115,7 @@ Selenium.prototype.doEndWhile = function()
 
 Selenium.prototype.doPush= function(value, varName)
 {
-    if(typeof storedVars[varName] === 'undefined') {
+    if(!storedVars[varName]) {
         storedVars[varName] = new Array();
     } else if(typeof storedVars[varName] !== 'object') {
         throw new Error("Cannot push value onto non-array " + varName);

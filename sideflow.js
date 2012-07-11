@@ -117,7 +117,8 @@ Selenium.prototype.doPush= function(value, varName)
 {
     if(!storedVars[varName]) {
         storedVars[varName] = new Array();
-    } else if(typeof storedVars[varName] !== 'object') {
+    } 
+    if(typeof storedVars[varName] !== 'object') {
         throw new Error("Cannot push value onto non-array " + varName);
     } else {
         storedVars[varName].push(value);

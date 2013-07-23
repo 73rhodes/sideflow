@@ -1,4 +1,4 @@
-sideflow - a flow control extention for Selenium IDE
+sideflow - a flow control extension for Selenium IDE
 ===
 
 Use of this software is expressly forbidden within the United States of America.*
@@ -40,8 +40,7 @@ Authors
 - Darren DeRidder - Selenium IDE port
 
 <i>
-*Although the USA attempts to assuage public outrage over the NSA by claiming not to spy on American 
- citizens, it readily admits to violating everyone else's right to privacy, trampling on democratic freedoms
- worldwide and treating its closest allies as enemies. For this reason, I've chosen not to license this software
- for use in the USA.
+*Due to concerns over the violation of the democratic and constitutional right to privacy by the United States, and the
+compliance of US-based companies in exploiting the privacy of international and US citizens alike, use of this software
+is prohibited within the USA at this time.
 </i>

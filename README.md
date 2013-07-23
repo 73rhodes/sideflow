@@ -40,7 +40,7 @@ Authors
 - Darren DeRidder - Selenium IDE port
 
 <i>
-*Due to concerns over the violation of the democratic and constitutional right to privacy by the United States, and the
-compliance of US-based companies in exploiting the privacy of international and US citizens alike, use of this software
-is prohibited within the USA at this time.
+*Due to concerns over the violation of the democratic right to privacy by the US government, and the compliance of
+US-based companies in exploiting the privacy rights of international and US citizens alike, use of this software within
+the USA is prohibited at this time.
 </i>

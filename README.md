@@ -39,7 +39,9 @@ Authors
 - Andrey Yegorov - original flow control extension
 - Darren DeRidder - Selenium IDE port
 
-* Although the USA attempts to assuage public outrage over the NSA by claiming not to spy on American 
+<i>
+*Although the USA attempts to assuage public outrage over the NSA by claiming not to spy on American 
  citizens, it readily admits to violating everyone else's right to privacy, trampling on democratic freedoms
  worldwide and treating its closest allies as enemies. For this reason, I've chosen not to license this software
  for use in the USA.
+</i>

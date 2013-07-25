@@ -42,5 +42,6 @@ Authors
 <i>
 *Due to concerns over the violation of the democratic right to privacy by the US government, and the compliance of
 US-based companies in exploiting the privacy rights of international and US citizens alike, use of this software within
-the USA is prohibited at this time.
+the USA is prohibited at this time. Friends and allies of the US do not deserve to be treated as enemies and have their
+rights violated any moreso than US citizens do.
 </i>

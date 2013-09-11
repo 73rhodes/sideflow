@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+ xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+  <Description about="urn:mozilla:install-manifest">
+    <!-- needs to be in the format of an email address, but should be an actual email address -->
+    <em:id>sideflow@darren.deridder</em:id>
+    <!-- has to be lowercase -->
+    <em:name>sideflow</em:name>
+    <em:version>1.0</em:version>
+    <em:creator>Darren DeRidder</em:creator>
+    <em:description>A flow-control plugin for Selenium-IDE</em:description>
+    <em:type>2</em:type>
+ 
+    <!-- its a firefox plugin -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+        <em:minVersion>1.5</em:minVersion>
+        <em:maxVersion>*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+ 
+    <!-- this is an Se-IDE plugin, so we need to specify it as a requirement -->
+    <em:requires>   
+      <Description>
+        <em:id>{a6fd85ed-e919-4a43-a5af-8da18bda539f}</em:id>
+        <em:minVersion>1.0b2</em:minVersion>
+        <em:maxVersion>2.*</em:maxVersion>
+      </Description>  
+    </em:requires>
+  </Description>
+</RDF>

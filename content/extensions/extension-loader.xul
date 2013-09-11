@@ -8,6 +8,6 @@
     <script type="application/x-javascript" src="chrome://sideflow/content/sideflow.js"/>
     <html:script type="application/javascript">
         ide_api = new API();
-        ide_api.addPluginProvidedUserExtension("chrome://sideflow/content/extensions/sideflow.js");
+        ide_api.addPluginProvidedUserExtension("chrome://sideflow/content/extensions/sideflow-setup.js");
     </html:script>
 </overlay>

@@ -24,7 +24,7 @@
     <em:requires>   
       <Description>
         <em:id>{a6fd85ed-e919-4a43-a5af-8da18bda539f}</em:id>
-        <em:minVersion>1.0b2</em:minVersion>
+        <em:minVersion>1.0.4</em:minVersion>
         <em:maxVersion>2.*</em:maxVersion>
       </Description>  
     </em:requires>

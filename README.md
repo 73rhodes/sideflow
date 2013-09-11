@@ -1,8 +1,6 @@
 sideflow - a flow control extension for Selenium IDE
 ===
 
-Use of this software is expressly forbidden within the United States of America.*
-
 Let's you do goto and while loops in the Selenium IDE Firefox add-on. This is a Selenium
 IDE compatible port of the flow control extension from http://wiki.openqa.org/display/SEL/flowControl.
 
@@ -39,9 +37,6 @@ Authors
 - Andrey Yegorov - original flow control extension
 - Darren DeRidder - Selenium IDE port
 
-<i>
-*Due to concerns over the violation of the democratic right to privacy by the US government, and the compliance of
-US-based companies in exploiting the privacy rights of international and US citizens alike, use of this software within
-the USA is prohibited at this time. Friends and allies of the US do not deserve to be treated as enemies and have their
-rights violated any moreso than US citizens do.
-</i>
+License
+---
+- See the attached License document.

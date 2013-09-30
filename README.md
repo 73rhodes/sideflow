@@ -29,7 +29,7 @@ Commands
 Resources
 ---
 
-- Install and usage information [Blog](http://51elliot.blogspot.com/2008/02/selenium-ide-goto.html)
+- [Full Documentation](http://51elliot.blogspot.com/2008/02/selenium-ide-goto.html)
 - Selenium HQ [SeleniumHQ](http://seleniumhq.org/)
 
 Authors

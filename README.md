@@ -1,7 +1,7 @@
 sideflow - a flow control extension for Selenium IDE
 ===
 
-Let's you do goto and while loops in the Selenium IDE Firefox add-on. This is a Selenium
+Lets you do goto and while loops in the Selenium IDE Firefox add-on. This is a Selenium
 IDE compatible port of the flow control extension from http://wiki.openqa.org/display/SEL/flowControl.
 
 <img src="http://4.bp.blogspot.com/_Vi1folaOZAs/R7N1_L5KjDI/AAAAAAAAAGQ/PyozuVCHBC4/s400/flow_control_ide.png"></img>

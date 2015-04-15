@@ -1,16 +1,14 @@
 var gotoLabels= {};
 var whileLabels = {};
 
-// overload the original Selenium reset function
-Selenium.prototype.reset = function() {
-    // reset the labels
-    this.initialiseLabels();
-    // proceed with original reset code
-    this.defaultTimeout = Selenium.DEFAULT_TIMEOUT;
-    this.browserbot.selectWindow("null");
-    this.browserbot.resetPopups();
-}
-
+(function() {
+    // Proxy design pattern - Overwrite Selenium's reset() function and then invoke the original impl
+    var proxied = Selenium.prototype.reset;
+    Selenium.prototype.reset = function() {
+        this.initialiseLabels();
+        return proxied.apply( this, arguments );
+    };
+})();
 
 /*
  * ---   Initialize Conditional Elements  --- *
@@ -66,8 +64,7 @@ Selenium.prototype.initialiseLabels = function()
                 break;
         }
     }
-
-}
+};
 
 Selenium.prototype.continueFromRow = function( row_num )
 {
@@ -75,10 +72,10 @@ Selenium.prototype.continueFromRow = function( row_num )
         throw new Error( "Invalid row_num specified." );
     }
     testCase.debugContext.debugIndex = row_num;
-}
+};
 
 // do nothing. simple label
-Selenium.prototype.doLabel = function(){};
+Selenium.prototype.doLabel = function() {};
 
 Selenium.prototype.doGotoLabel = function( label )
 {
@@ -93,7 +90,7 @@ Selenium.prototype.doGoto = Selenium.prototype.doGotoLabel;
 Selenium.prototype.doGotoIf = function( condition, label )
 {
     if( eval(condition) ) this.doGotoLabel( label );
-}
+};
 
 Selenium.prototype.doWhile = function( condition )
 {
@@ -103,7 +100,7 @@ Selenium.prototype.doWhile = function( condition )
         if( undefined == end_while_row ) throw new Error( "Corresponding 'endWhile' is not found." );
         this.continueFromRow( end_while_row );
     }
-}
+};
 
 Selenium.prototype.doEndWhile = function()
 {
@@ -111,7 +108,7 @@ Selenium.prototype.doEndWhile = function()
     var while_row = whileLabels.ends[ last_row ] - 1;
     if( undefined == while_row ) throw new Error( "Corresponding 'While' is not found." );
     this.continueFromRow( while_row );
-}
+};
 
 Selenium.prototype.doPush= function(value, varName)
 {
@@ -123,4 +120,4 @@ Selenium.prototype.doPush= function(value, varName)
     } else {
         storedVars[varName].push(value);
     }
-}
+};

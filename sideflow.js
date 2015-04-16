@@ -63,19 +63,21 @@ objectExtend(SideFlow.prototype, {
                 command_rows.push(commands[i]);
             }
             for (var i = 0; i < command_rows.length; i++) {
-                if (this.utils.isIDE() && (command_rows[i].type == 'command')) {
-                    switch (command_rows[i].command.toLowerCase()) {
-                        case "label":
-                            this.gotoLabels[ command_rows[i].target ] = i;
-                            break;
-                        case "while":
-                        case "endwhile":
-                            cycles.push([command_rows[i].command.toLowerCase(), i]);
-                            break;
-                        case "foreach":
-                        case "endforeach":
-                            forEachCmds.push([command_rows[i].command.toLowerCase(), i]);
-                            break;
+                if (this.utils.isIDE()) {
+                    if((command_rows[i].type == 'command')) {
+                        switch (command_rows[i].command.toLowerCase()) {
+                            case "label":
+                                this.gotoLabels[ command_rows[i].target ] = i;
+                                break;
+                            case "while":
+                            case "endwhile":
+                                cycles.push([command_rows[i].command.toLowerCase(), i]);
+                                break;
+                            case "foreach":
+                            case "endforeach":
+                                forEachCmds.push([command_rows[i].command.toLowerCase(), i]);
+                                break;
+                        }
                     }
                 } else {
                     var command = command_rows[i].trElement.cells[0].innerHTML;

@@ -1,7 +1,23 @@
 var SideFlowUtils = classCreate();
 objectExtend(SideFlowUtils.prototype, {
+    testCase: null,
     banner: "SideFlow",
-    initialize: function() {},
+    initialize: function() { },
+    setTestCase: function(testCase) {
+        this.testCase = testCase;
+    },
+    getTestCase: function() {
+        return this.testCase;
+    },
+    getCommands: function() {
+        var seleniumCommands;
+        if(this.isIDE()) {
+            seleniumCommands = this.getTestCase().commands;
+        } else {
+            seleniumCommands = this.getTestCase().commandRows;
+        }
+        return seleniumCommands;
+    },
     isIDE: function() {
         return (Application.prototype != undefined);
     },
@@ -22,21 +38,6 @@ objectExtend(SideFlowUtils.prototype, {
     },
     throwError: function(err, error) {
         throw new SeleniumError(this.formatMessage(err, error));
-    },
-    getTestCase: function() {
-        if(this.isIDE()) {
-            return testCase;
-        }
-        return new testFrame.getCurrentTestCase();
-    },
-    getCommands: function() {
-        var seleniumCommands;
-        if(this.isIDE()) {
-            seleniumCommands = this.getTestCase().commands;
-        } else {
-            seleniumCommands = this.getTestCase().commandRows;
-        }
-        return seleniumCommands;
     }
 });
 
@@ -45,7 +46,6 @@ objectExtend(SideFlow.prototype, {
     gotoLabels: {},
     whileLabels: { ends: {}, whiles: {} },
     utils: null,
-
     /*
      * ---   Initialize Conditional Elements  --- *
      *  Run through the script collecting line numbers of all conditional elements
@@ -54,15 +54,20 @@ objectExtend(SideFlow.prototype, {
     initialize: function(sideFlowUtils) {
         this.utils = sideFlowUtils;
         this.utils.debug("detected runtime = Selenium " + (this.utils.isIDE() ? "IDE" : "RC"), new Error());
+        if(this.utils.isIDE()) {
+            this.utils.setTestCase(testCase);
+        } else {
+            this.utils.setTestCase(testFrame.getCurrentTestCase());
+        }
         try {
             var commands = this.utils.getCommands(),
                 command_rows = [],
                 cycles = [],
                 forEachCmds = [];
-            for (var i = 0; i < commands.length; ++i) {
+            for(var i = 0; i < commands.length; ++i) {
                 command_rows.push(commands[i]);
             }
-            for (var i = 0; i < command_rows.length; i++) {
+            for(var i = 0; i < command_rows.length; i++) {
                 if (this.utils.isIDE()) {
                     if((command_rows[i].type == 'command')) {
                         switch (command_rows[i].command.toLowerCase()) {
@@ -104,18 +109,20 @@ objectExtend(SideFlow.prototype, {
         }
         var i = 0;
         while (cycles.length) {
-            if (i >= cycles.length) {
+            if(i >= cycles.length) {
                 this.utils.throwError("non-matching while/endWhile found", new Error());
             }
-            switch (cycles[i][0]) {
+            switch(cycles[i][0]) {
                 case "while":
-                    if (( i + 1 < cycles.length ) && ( "endwhile" == cycles[i + 1][0] )) {
+                    if(( i + 1 < cycles.length ) && ( "endwhile" == cycles[i + 1][0] )) {
                         // pair found
                         this.whileLabels.ends[ cycles[i + 1][1] ] = cycles[i][1];
                         this.whileLabels.whiles[ cycles[i][1] ] = cycles[i + 1][1];
                         cycles.splice(i, 2);
                         i = 0;
-                    } else ++i;
+                    } else {
+                        ++i;
+                    }
                     break;
                 case "endwhile":
                     ++i;
@@ -124,13 +131,13 @@ objectExtend(SideFlow.prototype, {
         }
     },
     continueFromRow: function (row_num) {
-        if (row_num == undefined || row_num == null || row_num < 0) {
+        if((row_num == undefined) || (row_num == null) || (row_num < 0) || isNaN(row_num)) {
             this.utils.throwError("Invalid row_num specified.", new Error());
         }
-        if (this.utils.isIDE()) {
+        if(this.utils.isIDE()) {
             this.utils.getTestCase().debugContext.debugIndex = row_num;
         } else {
-            this.utils.getTestCase().nextCommandRowIndex = row_num;
+            this.utils.getTestCase().nextCommandRowIndex = row_num + 1;
         }
     }
 });
@@ -146,30 +153,35 @@ var sideFlow = null;
 })();
 
 // do nothing. simple label
-Selenium.prototype.doLabel = function(){};
-Selenium.prototype.doGotoLabel = function( label ) {
-    if( undefined == sideFlow.gotoLabels[label] ) {
+Selenium.prototype.doLabel = function() { };
+
+Selenium.prototype.doGotoLabel = function(label) {
+    if(undefined == sideFlow.gotoLabels[label]) {
         sideFlow.utils.throwError( "Specified label '" + label + "' is not found.", new Error() );
     }
-    sideFlow.continueFromRow( sideFlow.gotoLabels[ label ] );
+    sideFlow.continueFromRow( sideFlow.gotoLabels[label] );
 };
 
 Selenium.prototype.doGoto = Selenium.prototype.doGotoLabel;
 
-Selenium.prototype.doGotoIf = function( condition, label ) {
-    if( eval(condition) ) this.doGotoLabel( label );
+Selenium.prototype.doGotoIf = function(condition, label) {
+    if(eval(condition)) {
+        this.doGotoLabel( label );
+    }
 };
 
-Selenium.prototype.doWhile = function( condition ) {
-    if( !eval(condition) ) {
+Selenium.prototype.doWhile = function(condition) {
+    if(!eval(condition)) {
         var last_row;
         if(sideFlow.utils.isIDE()) {
             last_row = sideFlow.utils.getTestCase().debugContext.debugIndex;
         } else {
-            last_row = sideFlow.utils.getTestCase().nextCommandRowIndex;
+            last_row = sideFlow.utils.getTestCase().nextCommandRowIndex - 1;
         }
         var end_while_row = sideFlow.whileLabels.whiles[ last_row ];
-        if( undefined == end_while_row ) sideFlow.utils.throwError( "Corresponding 'endWhile' is not found.", new Error() );
+        if((undefined == end_while_row) || isNaN(end_while_row)) {
+            sideFlow.utils.throwError( "Corresponding 'endWhile' is not found.", new Error() );
+        }
         sideFlow.continueFromRow( end_while_row );
     }
 };
@@ -179,10 +191,12 @@ Selenium.prototype.doEndWhile = function() {
     if(sideFlow.utils.isIDE()) {
         last_row = sideFlow.utils.getTestCase().debugContext.debugIndex;
     } else {
-        last_row = sideFlow.utils.getTestCase().nextCommandRowIndex;
+        last_row = sideFlow.utils.getTestCase().nextCommandRowIndex - 1;
     }
     var while_row = sideFlow.whileLabels.ends[ last_row ] - 1;
-    if( undefined == while_row ) sideFlow.utils.throwError( "Corresponding 'While' is not found.", new Error() );
+    if((undefined == while_row) || isNaN(while_row)) {
+        sideFlow.utils.throwError( "Corresponding 'While' is not found.", new Error() );
+    }
     sideFlow.continueFromRow( while_row );
 };
 

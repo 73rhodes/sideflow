@@ -1,6 +1,7 @@
 sideflow - a flow control extension for Selenium IDE
 ===
 
+[![DeepScan grade](https://deepscan.io/api/teams/1201/projects/16147/branches/340277/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=1201&pid=16147&bid=340277)
 [![Maintainability](https://api.codeclimate.com/v1/badges/03f67e29b16cb1e8beb7/maintainability)](https://codeclimate.com/github/73rhodes/sideflow/maintainability)
 
 Lets you do goto and while loops in the Selenium IDE Firefox add-on. This is a Selenium

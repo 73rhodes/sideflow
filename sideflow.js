@@ -29,7 +29,7 @@ Selenium.prototype.initialiseLabels = function()
         command_rows.push(x);
     }
     var cycles = [];
-    var forEachCmds = [];
+    // var forEachCmds = [];
     for( var i = 0; i < command_rows.length; i++ ) {
         if (command_rows[i].type == 'command')
         switch( command_rows[i].command.toLowerCase() ) {
@@ -42,7 +42,8 @@ Selenium.prototype.initialiseLabels = function()
                 break;
             case "foreach":
             case "endforeach":
-                forEachCmds.push( [command_rows[i].command.toLowerCase(), i] )
+                // TODO support foreach
+                // forEachCmds.push( [command_rows[i].command.toLowerCase(), i] )
                 break;
         }
     }  
@@ -71,7 +72,7 @@ Selenium.prototype.initialiseLabels = function()
 
 Selenium.prototype.continueFromRow = function( row_num )
 {
-    if(row_num == undefined || row_num == null || row_num < 0) {
+    if(row_num == null || row_num < 0) {
         throw new Error( "Invalid row_num specified." );
     }
     testCase.debugContext.debugIndex = row_num;
@@ -109,7 +110,7 @@ Selenium.prototype.doEndWhile = function()
 {
     var last_row = testCase.debugContext.debugIndex;
     var while_row = whileLabels.ends[ last_row ] - 1;
-    if( undefined == while_row ) throw new Error( "Corresponding 'While' is not found." );
+    if ( while_row < 0 ) throw new Error( "Corresponding 'While' is not found." );
     this.continueFromRow( while_row );
 }
 
